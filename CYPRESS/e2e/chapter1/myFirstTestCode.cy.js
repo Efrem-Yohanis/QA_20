@@ -31,7 +31,7 @@ describe('Test case folder 1',function (){
     })
 })
 
-// in one test file we have many describe() bloke
+// in one test file we have many describe() blok
 // in one describe blok we have many it() bloke 
 // we can use arrow function or nameless function in both case => describe() or it()
 
