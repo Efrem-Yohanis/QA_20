@@ -1,11 +1,38 @@
 describe('common Cypress Assertion',()=>{
-    it('Length check',()=>{
+    it.only('Length check',()=>{
         cy.visit('http://127.0.0.1:5500/project1/home.html') 
-        cy.get('.as-table').find('tbody>tr').first().as('tr').should('not.have.length','3')
-        cy.get('@tr').find('td').should('have.length','2')
+        cy.get('.as-table').find('tbody>tr')
+         .first().as('first_row')
+
+          cy.xpath("/html/body/div/div/div[2]/div/table/tbody/tr[1]").as("frx")
+          cy.get("@frx").should('have.length.lte', 5)
+ // gt 
+ // gte
+ // lt
+ // lte
+         cy.xpath("/html/body/div/div/div[2]/div/table/tbody/tr[1]").then((sub)=>{
+            var x = sub
+            expect(x).to.have.length(1)
+         })
+         
+        //   cy.xpath("/html/body/div/div/div[2]/div/table/tbody/tr[1]").then((sub)=>{
+        //      const value = sub;
+        //      expect(value).to.have.length.gte(1)
+        //   })
+
+         
+    })
+    it('.to.have.length',()=>{
+        cy.visit('http://127.0.0.1:5500/project1/home.html') 
+        cy.get('.as-table').find('tbody>tr').first().then((sub)=>{
+            expect(sub).to.have.length(1)
+        })
+        cy.get('.as-table').find('tbody>tr').find('td').then((sub)=>{
+            expect(sub).to.have.length(4)
+        })
     })
     it('class check',()=>{
-        cy.visit('http://127.0.0.1:5500/project1/home.html')
+        cy.visit('http://127.0.0.1:5500/project1/home.html')  
         cy.get('.as-table').find('tbody>tr').first().find('td').first().find('button').should('have.class','btn-primary')
     })
     it('test contain check',()=>{
