@@ -21,6 +21,7 @@ import './commands'
 
 require('cypress-xpath');
 
+
 const app = window.top;
 if(!app.document.head.querySelector("[data-hide-command-log-request]")){
     const style = app.document.createElement("style");
@@ -28,3 +29,5 @@ if(!app.document.head.querySelector("[data-hide-command-log-request]")){
     style.setAttribute("data-hide-command-log-request", "");
     app.document.head.appendChild(style);
 }
+
+require('cypress-file-upload');
